@@ -5,6 +5,8 @@ A Chrome Extension that generates student lesson notes for theCoderSchool Notes+
 ## Purpose
 For my job at theCoderSchool, I need to write lesson notes for my students. I don't like writing notes, so I decided to make an extension to help me write them. All I need to do is write bullet points about what the student did, and the extension will write the note for me!
 
+![Example Response](Example%20Response.png)
+
 ## Features
 - Injects a "Generate Note" button natively into the Notes+ writeNote.php page.
 - Reads bullet points directly from the TinyMCE rich text editor.
