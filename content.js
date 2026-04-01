@@ -38,12 +38,29 @@ async function handlePageGenerate(e) {
     return;
   }
 
-  // 2. Call API
+  // 2. Get Student Context
+  const langEl = document.getElementById('language');
+  const language = langEl && langEl.value !== "-" ? langEl.value : "(No language selected)";
+
+  const projEl = document.getElementById('appname');
+  const project = projEl && projEl.value.trim() !== "" ? projEl.value.trim() : "their project";
+
+  const nameSpans = document.querySelectorAll('span[style*="color:#00aa00"], span[style*="color: #00aa00"]');
+  let studentName = "The student";
+  if (nameSpans.length > 0) studentName = nameSpans[0].innerText.trim();
+
+  // 3. Call API
   btn.textContent = 'Generating...';
   btn.disabled = true;
 
   try {
     const prompt = `You are an expert assistant for coding coaches. You are writing note summaries to parents of students. 
+
+Student Context:
+- Name: ${studentName}
+- Language: ${language}
+- Project: ${project}
+
 Today's student bullet points:
 ${bullets}
 

@@ -9,9 +9,8 @@ For my job at theCoderSchool, I need to write lesson notes for my students. I do
 - Injects a "Generate Note" button natively into the Notes+ writeNote.php page.
 - Reads bullet points directly from the TinyMCE rich text editor.
 - Generates a professional, supportive lesson summary paragraph using Gemini 2.5 Flash.
-- Reads the previous lesson note to maintain ongoing context.
-- Automatically injects coding concepts (e.g., Variables, Loops) into the native concept tag input field.
-- Saves the most recently generated concept tags to the extension popup for manual copying.
+- Auto-extracts the native student name, coding language, and project name from the website and displays them cleanly in the extension popup for quick context.
+- Automatically injects coding concepts (e.g., Variables, Loops) directly into the native concept tag input field via simulated keystrokes.
 
 ## Installation
 1. Clone or download this repository.
@@ -26,6 +25,13 @@ For my job at theCoderSchool, I need to write lesson notes for my students. I do
 
 ## Usage
 1. Navigate to a student's `writeNote.php` page in the Notes+ portal.
-2. Type bullet points outlining the lesson into the main text box.
+2. Type rough bullet points outlining the lesson into the main text box.
 3. Click the green **Generate Note** button at the bottom of the page.
-4. The extension will replace your bullet points with a formatted paragraph and automatically populate the concept tags.
+4. The extension will read your points, replace them with a formatted paragraph, and automatically populate the concept tags!
+
+## Challenges Faced
+During development, several technical hurdles were overcome to ensure seamless, native integration within the Notes+ portal:
+
+- **Iframe Manipulation:** The portal uses a TinyMCE rich text editor embedded within an `iframe`. Reading and rewriting the raw bullet points required bypassing the primary DOM and dynamically querying the `contentDocument` of the isolated iframe object.
+- **Simulating Native User Input:** The portal's "Concepts" input field strictly relies on specialized JavaScript `keyup` listeners. Standard DOM manipulation (e.g., `input.value = "Loops"`) bypassed their event listeners entirely. We countered this by building a custom, delayed asynchronous loop that manually triggers simulated `KeyboardEvent` objects (acting like the 'Enter' key) to trick the native listeners into registering the AI-generated concepts.
+- **Strict JSON Output Enforcement:** Preventing the Google Gemini model from returning conversational filler or markdown blocks required strict prompt engineering and specifically supplying the `responseMimeType: "application/json"` configuration flag so the resulting data could be reliably parsed by the extension.
