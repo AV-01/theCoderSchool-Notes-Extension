@@ -1,0 +1,26 @@
+#tcs-ai-page-btn {
+  display: block;
+  float: right;
+  margin: 15px;
+  background: #00aa00;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  clear: both;
+}
+#tcs-ai-page-btn:hover {
+  background-color: #008800;
+  transform: translateY(-1px);
+}
+#tcs-ai-page-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+}

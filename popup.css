@@ -1,0 +1,19 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 15px;
+  width: 320px;
+  background-color: #f8f9fa;
+  color: #333;
+}
+.container { display: flex; flex-direction: column; gap: 8px; }
+h2 { margin: 0; font-size: 16px; color: #00aa00; border-bottom: 2px solid #00aa00; padding-bottom: 5px; }
+
+.settings-panel { display: flex; gap: 5px; align-items: center; }
+.settings-panel input { flex-grow: 1; padding: 6px; border: 1px solid #ced4da; border-radius: 4px; font-size: 12px; }
+.settings-panel input:focus { outline: none; border-color: #00aa00; }
+.settings-panel button { padding: 6px 12px; font-size: 12px; background-color: #00aa00; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s;}
+.settings-panel button:hover { background-color: #008800; }
+
+.status-msg { font-size: 12px; height: 14px; color: #dc3545; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.success { color: #00aa00; }
