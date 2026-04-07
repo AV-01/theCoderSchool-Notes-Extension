@@ -18,8 +18,8 @@ async function handlePageGenerate(e) {
   const btn = document.getElementById('tcs-ai-page-btn');
   const originalText = btn.textContent;
 
-  // 1. Get API Key
-  const storageData = await new Promise(resolve => chrome.storage.local.get(['geminiApiKey'], resolve));
+  // 1. Get Settings
+  const storageData = await new Promise(resolve => chrome.storage.local.get(['geminiApiKey', 'customPrompt'], resolve));
   const apiKey = storageData.geminiApiKey;
   if (!apiKey) {
     alert("Please open the AI Notes+ extension popup and save your Gemini API Key first!");
@@ -54,15 +54,15 @@ async function handlePageGenerate(e) {
   btn.disabled = true;
 
   try {
-    const prompt = `You are an expert assistant for coding coaches. You are writing note summaries to parents of students. 
+    const defaultPrompt = `You are an expert assistant for coding coaches. You are writing note summaries to parents of students. 
 
 Student Context:
-- Name: ${studentName}
-- Language: ${language}
-- Project: ${project}
+- Name: {studentName}
+- Language: {language}
+- Project: {project}
 
 Today's student bullet points:
-${bullets}
+{bullets}
 
 Write a short, single paragraph on what the student worked on and how they did. Do NOT use markdown. Avoid filler, but make it clear work was done.
 Focus on the "why" and "how" of the logic.
@@ -74,6 +74,15 @@ Return ONLY valid JSON in this format:
   "paragraph": "The generated paragraph here...",
   "concepts": ["concept1", "concept2", "concept3"]
 }`;
+
+    const promptTemplate = storageData.customPrompt || defaultPrompt;
+    
+    // Replace variables
+    const prompt = promptTemplate
+      .replace(/{studentName}/g, studentName)
+      .replace(/{language}/g, language)
+      .replace(/{project}/g, project)
+      .replace(/{bullets}/g, bullets);
 
     const requestBody = {
       contents: [{ parts: [{ text: prompt }] }],

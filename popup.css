@@ -9,10 +9,11 @@ body {
 .container { display: flex; flex-direction: column; gap: 8px; }
 h2 { margin: 0; font-size: 16px; color: #00aa00; border-bottom: 2px solid #00aa00; padding-bottom: 5px; }
 
-.settings-panel { display: flex; gap: 5px; align-items: center; }
-.settings-panel input { flex-grow: 1; padding: 6px; border: 1px solid #ced4da; border-radius: 4px; font-size: 12px; }
-.settings-panel input:focus { outline: none; border-color: #00aa00; }
-.settings-panel button { padding: 6px 12px; font-size: 12px; background-color: #00aa00; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s;}
+.settings-panel { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+.settings-panel input, .settings-panel textarea { width: 100%; box-sizing: border-box; padding: 6px; border: 1px solid #ced4da; border-radius: 4px; font-size: 12px; }
+.settings-panel input:focus, .settings-panel textarea:focus { outline: none; border-color: #00aa00; }
+.settings-panel textarea { font-family: inherit; resize: vertical; min-height: 200px; }
+.settings-panel button { padding: 8px 12px; font-size: 13px; font-weight: bold; background-color: #00aa00; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s;}
 .settings-panel button:hover { background-color: #008800; }
 
 .status-msg { font-size: 12px; height: 14px; color: #dc3545; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
