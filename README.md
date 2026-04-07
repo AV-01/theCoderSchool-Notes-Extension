@@ -12,6 +12,7 @@ For my job at theCoderSchool, I need to write lesson notes for my students. I do
 - Reads bullet points directly from the TinyMCE rich text editor.
 - Generates a professional, supportive lesson summary paragraph using Gemini 2.5 Flash.
 - Auto-extracts the native student name, coding language, and project name from the website and displays them cleanly in the extension popup for quick context.
+- Fully customizable AI prompt accessible from the extension popup, supporting `{studentName}` and `{language}` variables.
 - Automatically injects coding concepts (e.g., Variables, Loops) directly into the native concept tag input field via simulated keystrokes.
 
 ## Installation
@@ -23,7 +24,13 @@ For my job at theCoderSchool, I need to write lesson notes for my students. I do
 ## Setup
 1. Obtain a Google Gemini API Key from Google AI Studio.
 2. Click the extension icon in your Chrome toolbar.
-3. Paste your API key and click **Save**. This is a one-time setup; the key is saved locally.
+3. Paste your API key and click **Save Settings**. This is a one-time setup; the key is saved locally.
+
+## Customizing the AI Prompt
+1. Open the extension popup by clicking its icon in Chrome.
+2. In the provided text area, you can review or modify the default system prompt used to instruct Gemini.
+3. Use the dynamic variables `{studentName}`, `{language}`, `{project}`, and `{bullets}` anywhere in your prompt. The extension will automatically inject the scraped website data when generating the note.
+4. Click **Save Settings** to persist your custom prompt.
 
 ## Usage
 1. Navigate to a student's `writeNote.php` page in the Notes+ portal.
