@@ -84,6 +84,7 @@ Return ONLY valid JSON in this format:
       .replace(/{project}/g, project)
       .replace(/{bullets}/g, bullets);
 
+    // Request JSON response for parsing
     const requestBody = {
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: { temperature: 0.7, responseMimeType: "application/json" }
